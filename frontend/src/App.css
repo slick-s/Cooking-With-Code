@@ -21,11 +21,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(243, 87, 14);
 }
 
 .App-link {
-  color: #61dafb;
+  color: #212b2e;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +35,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+.bg-image {
+  background-image: url(CookingWithCode.jpeg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: rgb(153, 25, 25);
+}
+.custom-background{
+  height: 100vh;
+  background-color: #fff9f0
+}
+.custom-h1{
+  color: #212b2e;
 }
