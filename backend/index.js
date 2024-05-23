@@ -1,11 +1,39 @@
-import express from "express";
-import cors from "cors";
+const express = require('express');
+const cors = require('cors');
+const db = require('./db');
+require('dotenv').config();
 
+//Middleware
 const app = express();
 app.use(cors());
+app.use(express.json());
 
-app.get('/',(req,res)=>{
-    res.send('Hello world!');
-})
+const PORT = process.env.PORT || 5000;
 
-app.listen(5000,()=>console.log("app is running"));
+//ROUTES
+
+//Home page
+app.get('/api/data', async (req, res) => {
+  try {
+    
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+//Create a new recipe
+
+//Get Breakfast recipe
+
+//Get Lunch recipe
+
+//Get Dinner recipe
+
+//Update a recipe
+
+// Delete a recipe
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
