@@ -23,17 +23,65 @@ app.get('/api/data', async (req, res) => {
 });
 
 //Create a new recipe
+app.post("/newrecipe", async(req,res) =>{
+    try{
 
+    }catch(err){
+        console.error(err.message);
+    }
+})
+
+//Get all recipes 
+app.get("/recipes", async(req,res) => {
+    try{
+
+    }catch(err){
+        console.error(err.message)
+    }
+})
 //Get Breakfast recipe
-
+app.get("/recipes/:id/breakfast", async(req,res) => {
+    try {
+        
+    } catch (error) {
+        console.error(err.message)
+    }
+})
 //Get Lunch recipe
+app.get("/recipes/:id/lunch", async(req,res) => {
+    try {
+        
+    } catch (error) {
+        console.error(err.message)
+    }
+})
 
 //Get Dinner recipe
+app.get("/recipes/:id/dinner", async(req,res) => {
+    try {
+        
+    } catch (error) {
+        console.error(err.message)
+    }
+})
 
 //Update a recipe
+app.put("/recipes/:id", async(req,res) =>{
+    try{
+
+    }catch(error){
+        console.error(err.message)
+    }
+})
 
 // Delete a recipe
+app.delete("/recipes/:id",async(req,res)=>{
+    try{
 
+    }catch(error){
+        console.error(err.message)
+    }
+})
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
