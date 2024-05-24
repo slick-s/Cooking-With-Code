@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -21,11 +22,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(243, 87, 14);
 }
 
 .App-link {
-  color: #61dafb;
+  color: #212b2e;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +36,49 @@
   to {
     transform: rotate(360deg);
   }
+}
+.bg-image {
+  background-image: url(CookingWithCode.jpeg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: rgb(153, 25, 25);
+}
+.custom-background{
+  height: 100vh;
+  background-color: #fff9f0
+}
+.custom-h1{
+  color: #212b2e;
+}
+
+
+.NavBarCustom {
+  background-color: #3498db !important; /* Your desired background color */
+}
+
+.NavBarCustom .nav-link {
+  color: #00110c !important; /* Your desired link color */
+}
+
+.NavBarCustom .navbar-brand {
+  color: #ff7733 !important; /* Your desired brand color */
+}
+
+.NavBarCustom .btn-outline-primary {
+  color: white !important;
+  border-color: white !important;
+}
+
+.NavBarCustom .btn-primary {
+  background-color: white !important;
+  color: #3498db !important;
+  border-color: white !important;
+}
+
+.NavBarCustom .form-control {
+  border-color: rgb(155, 17, 17) !important;
+}
+.custom-h3{
+  color: aquamarine;
 }
