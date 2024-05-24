@@ -12,8 +12,6 @@ app.use(cors())
 app.use(express.json())
 
 // QUERY METHODS
-// await client.connect()
-
 
 
 // Controllers and Routes
@@ -26,9 +24,10 @@ app.get("/api", async (req, res) => {
 // CREATE - POST A NEW FAVORITE RECIPE
 app.post('/favorites', async (req, res) => {
     try {
-        const {Body} = req.body
-        const favs = await pool.query('INSERT INTO favorite_recipes (favorites) VALUES ($1) RETURNING *', [Body])
-
+        const { favorites } = req.body
+        const favs = await pool.query('INSERT INTO favorite_recipes (favorites) VALUES ($1) RETURNING *', [favorites])
+        console.log(favorites);
+        console.log(favs);
         res.json(favs.rows[0])
     } catch (err) {
         console.log(err);
@@ -48,12 +47,12 @@ app.get('/favorites/:id', async (req, res) => {
 
 // // UPDATE - PUT/PATCH
 // app.put('/favorites/:id', (req, res) => {
- 
+
 // })
 
 // // DELETE - DELETE
 // app.delete('/favorites/:id', (req, res) => {
- 
+
 // })
 
 // // Backend Server Port
