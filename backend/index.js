@@ -13,9 +13,9 @@ const PORT = process.env.PORT || 5000;
 //ROUTES
 
 //Home page
-app.get('/api/data', async (req, res) => {
+app.get('/api', async (req, res) => {
   try {
-    
+    res.send("hello world!")
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -25,7 +25,7 @@ app.get('/api/data', async (req, res) => {
 //Create a new recipe
 app.post("/newrecipe", async(req,res) =>{
     try{
-
+        res.send("new recipes is working")
     }catch(err){
         console.error(err.message);
     }
@@ -34,32 +34,32 @@ app.post("/newrecipe", async(req,res) =>{
 //Get all recipes 
 app.get("/recipes", async(req,res) => {
     try{
-
+        res.send("all recipes should be displayed here")
     }catch(err){
         console.error(err.message)
     }
 })
 //Get Breakfast recipe
-app.get("/recipes/:id/breakfast", async(req,res) => {
+app.get("/recipes/breakfast", async(req,res) => {
     try {
-        
+        res.send("all breakfast recipes are here")
     } catch (error) {
         console.error(err.message)
     }
 })
 //Get Lunch recipe
-app.get("/recipes/:id/lunch", async(req,res) => {
+app.get("/recipes/lunch", async(req,res) => {
     try {
-        
+        res.send("all lunch recipes are here")
     } catch (error) {
         console.error(err.message)
     }
 })
 
 //Get Dinner recipe
-app.get("/recipes/:id/dinner", async(req,res) => {
+app.get("/recipes/dinner", async(req,res) => {
     try {
-        
+        res.send("all dinner recipes here")
     } catch (error) {
         console.error(err.message)
     }
