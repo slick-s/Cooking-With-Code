@@ -1,9 +1,13 @@
+
+import React, { useEffect, useState } from 'react';
+=======
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import NavBar from './componets/NavBar';
 import Background from './componets/background';
 import React, { useEffect, useState } from 'react' 
+
 
 function App() {
   const [message, setMessage] = useState()
