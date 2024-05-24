@@ -1,9 +1,10 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Container, Button, Form, FormControl } from 'react-bootstrap';
+import '../App.css';
 
 const NavBar = () => {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar className="NavBarCustom" bg="light" expand="lg">
             <Container>
                 <Navbar.Brand href="#home">Cooking-With-Code</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -13,13 +14,6 @@ const NavBar = () => {
                         <Nav.Link href="#breakfast">Breakfast</Nav.Link>
                         <Nav.Link href="#lunch">Lunch</Nav.Link>
                         <Nav.Link href="#dinner">Dinner</Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                        </NavDropdown>
                     </Nav>
                     <Form className="d-flex">
                         <FormControl 
