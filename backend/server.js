@@ -10,14 +10,26 @@ const methodOverride = require('method-override')
 // Middleware
 app.use(cors())
 app.use(express.json())
-
+const PORT = process.env.PORT || 5000;
 // QUERY METHODS
 
 
 // Controllers and Routes
 app.get("/api", async (req, res) => {
-    res.send('Hello!')
-})
+    try {
+        const response = await fetch('www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
+    
+        if (!response.ok){
+            throw new Error('Failute connecting to API');
+        }
+    
+        const data = await response.json();
+        res.json(data);
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+      }
+});
 
 /* FAVORITES TABLE ROUTES */
 

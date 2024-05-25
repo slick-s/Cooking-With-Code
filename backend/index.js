@@ -1,3 +1,6 @@
+//es6 syntax
+import fetch from 'node-fetch';
+
 const express = require('express');
 const cors = require('cors');
 const db = require('./db');
@@ -15,7 +18,14 @@ const PORT = process.env.PORT || 5000;
 //Home page
 app.get('/api', async (req, res) => {
   try {
-    res.send("hello world!")
+    const response = await fetch('www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
+
+    if (!response.ok){
+        throw new Error('Failute connecting to API');
+    }
+
+    const data = await response.json();
+    res.json(data);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -47,6 +57,7 @@ app.get("/recipes/breakfast", async(req,res) => {
         console.error(err.message)
     }
 })
+
 //Get Lunch recipe
 app.get("/recipes/lunch", async(req,res) => {
     try {
