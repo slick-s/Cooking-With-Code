@@ -36,10 +36,20 @@ app.get("/api", async (req, res) => {
 // CREATE - POST A NEW FAVORITE RECIPE
 app.post('/recipe', async (req, res) => {
     try {
+
         const { title, body} = req.body
         const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1,$2) RETURNING *', [title,body]);
         console.log(newRecipe);
         res.json(newRecipe.rows[0]);
+
+        const { favorites } = req.body
+        const favs = await pool.query('INSERT INTO favorite_recipes (favorites) VALUES ($1) RETURNING *', [favorites])
+        
+        console.log(favorites);
+        console.log(favs);
+
+        res.json(favs.rows[0])
+
     } catch (err) {
         console.log(err);
         res.status(500).send('Server Error');
@@ -47,25 +57,51 @@ app.post('/recipe', async (req, res) => {
 });
 
 // READ - GET
-app.get('/favorites/:id', async (req, res) => {
+app.get('/favorites', async (req, res) => {
     try {
-        const favs = await pool.query('SELECT * FROM favorite_recipes')
 
+        const favs = await pool.query('SELECT * FROM favorite_recipes')
         res.json(favs.rows)
+
     } catch (err) {
         console.log(err);
     }
 })
 
-// // UPDATE - PUT/PATCH
-// app.put('/favorites/:id', (req, res) => {
+app.get('/favorites/:id', async (req, res) => {
+    try {
 
+        const { id } = req.params
+        const specificFav = await pool.query('SELECT * FROM favorite_recipes WHERE fav_id = ($1)', [id])
+        res.json(specificFav.rows[0])
+
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+// UPDATE - PUT/PATCH
+// app.put('/favorites/:id', async (req, res) => {
+//     try {
+
+        
+
+
+//     } catch (err) {
+//         console.log(err);
+//     }
 // })
 
-// // DELETE - DELETE
-// app.delete('/favorites/:id', (req, res) => {
-
-// })
+// DELETE - DELETE
+app.delete('/favorites/:id', async (req, res) => {
+    try {
+        const {id} = req.params
+        const deleteFavs = await pool.query('DELETE FROM favorite_recipes WHERE fav_id = ($1)', [id])
+        res.send('Deleted')
+    } catch (err) {
+        console.log(err);
+    }
+})
 
 // // Backend Server Port
 app.listen(port, () => {
