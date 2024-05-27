@@ -38,17 +38,9 @@ app.post('/recipe', async (req, res) => {
     try {
 
         const { title, body} = req.body
-        const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1,$2) RETURNING *', [title,body]);
+        const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1) ($2) RETURNING *', [title,body]);
         console.log(newRecipe);
         res.json(newRecipe.rows[0]);
-
-        const { favorites } = req.body
-        const favs = await pool.query('INSERT INTO favorite_recipes (favorites) VALUES ($1) RETURNING *', [favorites])
-        
-        console.log(favorites);
-        console.log(favs);
-
-        res.json(favs.rows[0])
 
     } catch (err) {
         console.log(err);

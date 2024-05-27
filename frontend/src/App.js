@@ -26,7 +26,7 @@ function App() {
     
    const addRecipe = async(recipe) =>{
     try{
-      const response = await axios.post('http://localhost5000/recipes',recipe);
+      const response = await axios.post('http://localhost5000/recipe',recipe);
       console.log('Recipe has been added', response.data);
     }catch(error){
       console.error('Error with the Post operation', error);
