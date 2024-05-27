@@ -8,15 +8,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap';
 
 
-function RecipeCard({country}) {
+function RecipeCardCategory() {
 
   const [recipes_, setRecipes] = useState([])
   
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`);
-        setRecipes(response.data.meals);
+        const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
+        setRecipes(response.data.categories);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -24,20 +24,17 @@ function RecipeCard({country}) {
 
     fetchRecipes();
   }, []);
-
+    
   return (
     <div>
       <h1>Recipes</h1>
       {recipes_.map((recipe => {
         return (
-          <Card key={recipe.idMeal} style={{ width: '18rem' }}>
-            <Card.Img src={recipe.strMealThumb} variant="top"  />
+          <Card key={recipe.idCategory} style={{ width: '18rem' }}>
+            <Card.Img src={recipe.strCategoryThumb} variant="top"  />
             <Card.Body>
-              <Card.Title>{recipe.strMeal}</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-              </Card.Text>
+              <Card.Title>{recipe.strCategory}</Card.Title>
+              <Card.Text>{recipe.strCategoryDescription}</Card.Text>
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>
           </Card>
@@ -48,4 +45,4 @@ function RecipeCard({country}) {
   );
 }
 
-export default RecipeCard;
+export default RecipeCardCategory;
