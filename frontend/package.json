@@ -33,7 +33,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "source-map-loader": "^5.0.0"
+    "source-map-loader": "^5.0.0",
     "react-router-dom": "^6.23.1"
 }
 }

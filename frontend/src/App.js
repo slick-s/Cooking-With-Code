@@ -16,9 +16,9 @@ import Background from './components/background';
 // Pages
 import Home from './pages/Home'
 import American from './pages/American'
-import Dessert from './pages/Dessert'
-import Dinner from './pages/Dinner'
-import Lunch from './pages/Lunch'
+import Dessert from './pages/Chinese'
+import Dinner from './pages/Greek'
+import Lunch from './pages/Mexican'
 import Error404 from './pages/Error404'
 
 // Variables
