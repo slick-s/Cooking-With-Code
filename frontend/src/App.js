@@ -1,52 +1,63 @@
+// Modules
+import axios, * as others from 'axios';
+
+// React Modules
 import React, { useEffect, useState } from 'react';
-import NavBar from './components/NavBar'; // Adjust the import according to your project structure
-import Background from './components/background'; // Adjust the import according to your project structure
-import axios from 'axios';
+import { ReactDOM } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+// Components
+import NavBar from './components/NavBar';
+import Background from './components/background';
+
+// Pages
+import Home from './pages/Home'
+import American from './pages/American'
+import Chinese from './pages/Chinese'
+import Greek from './pages/Greek'
+import Mexican from './pages/Mexican'
+import Error404 from './pages/Error404'
+
+// Variables
+const key = process.env.REACT_APP_API_KEY
+
 
 function App() {
-  const [recipes, setRecipes] = useState([]); // Initialize state with an empty string
+  const [recipes_, setRecipes] = useState([]); // Initialize state with an empty string
 
   useEffect(() => {
-
-    const fetchRecipes = async()=>{
-        fetch('http://localhost:5000/api')
-        try{
-          const response = await axios.get('http://localhost:5000/api');
-          if(Array.isArray(response.data)){
-            setRecipes(response.data);
-          }else{
-            throw new Error('Data is not an array');
-          }
-        }
-        catch(error) {console.error('There was a problem with the fetch operation:', error);} 
-
-        fetchRecipes();//Trigger fetching method on component mount
-      }
-    }, []);//Run the effect only once on component mount
-    
-   const addRecipe = async(recipe) =>{
-    try{
-      const response = await axios.post('http://localhost5000/recipes',recipe);
-      console.log('Recipe has been added', response.data);
-    }catch(error){
-      console.error('Error with the Post operation', error);
-    }
-   }   
+    axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
+      .then((res) => {
+      setRecipes(res.data.meals)
+    })
+  }, [])
+  
 
   return (
     <div className="App">
-      <NavBar />
-      <Background />
+      <BrowserRouter>
+      <NavBar/>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/american' element={<American />} />
+          <Route path='/mexican' element={<Mexican />} />
+          <Route path='/greek' element={<Greek />} />
+          <Route path='/chinese' element={<Chinese />} />
+          <Route path='/404' element={<Error404 />} />
+        </Routes>
+      </BrowserRouter>
+      {/* <NavBar /> */}
+      {/* <Background /> */}
       <div className="message-container"> {/* Add a descriptive class name */}
         <h1>Recipes</h1>
-        <ul>
-          {recipes.map((recipe) => (
-            <li key={recipe.id}>
-              <h2>{recipe.title}</h2>
-              <p>{recipe.body}</p>
-            </li>
-          ))}
-        </ul>
+        {recipes_.map((recipe => {
+          return (
+            <div key={recipe.idMeal}>
+              <p>{recipe.strMeal}</p>
+            </div>
+          )
+        }))}
+       
       </div>
     </div>
   );

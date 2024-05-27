@@ -10,7 +10,7 @@ const methodOverride = require('method-override')
 // Middleware
 app.use(cors())
 app.use(express.json())
-const PORT = process.env.PORT || 5000;
+
 // QUERY METHODS
 
 
@@ -38,17 +38,9 @@ app.post('/recipe', async (req, res) => {
     try {
 
         const { title, body} = req.body
-        const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1,$2) RETURNING *', [title,body]);
+        const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1) ($2) RETURNING *', [title,body]);
         console.log(newRecipe);
         res.json(newRecipe.rows[0]);
-
-        const { favorites } = req.body
-        const favs = await pool.query('INSERT INTO favorite_recipes (favorites) VALUES ($1) RETURNING *', [favorites])
-        
-        console.log(favorites);
-        console.log(favs);
-
-        res.json(favs.rows[0])
 
     } catch (err) {
         console.log(err);
@@ -56,6 +48,19 @@ app.post('/recipe', async (req, res) => {
     }
 });
 
+app.post('/recipe', async (req, res) => {
+    try {
+
+        const { title} = req.body
+        const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1,$2) RETURNING *', [title]);
+        console.log(newRecipe);
+        res.json(newRecipe.rows[0]);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Server Error');
+    }
+});
 // READ - GET
 app.get('/favorites', async (req, res) => {
     try {
