@@ -10,7 +10,7 @@ const methodOverride = require('method-override')
 // Middleware
 app.use(cors())
 app.use(express.json())
-const PORT = process.env.PORT || 5000;
+
 // QUERY METHODS
 
 
@@ -50,6 +50,19 @@ app.post('/favorites', async (req, res) => {
     }
 })
 
+app.post('/recipe', async (req, res) => {
+    try {
+
+        const { title} = req.body
+        const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1,$2) RETURNING *', [title]);
+        console.log(newRecipe);
+        res.json(newRecipe.rows[0]);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Server Error');
+    }
+});
 // READ - GET
 app.get('/favorites', async (req, res) => {
     try {

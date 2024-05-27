@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Container, Button, Form, FormControl } from 'react-bootstrap';
 import '../App.css';
 
@@ -10,10 +11,10 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#breakfast">Breakfast</Nav.Link>
-                        <Nav.Link href="#lunch">Lunch</Nav.Link>
-                        <Nav.Link href="#dinner">Dinner</Nav.Link>
+                        <Nav.Link href='/'>Home</Nav.Link>
+                        <Nav.Link href="/american">American</Nav.Link>
+                        <Nav.Link href="/lunch">Lunch</Nav.Link>
+                        <Nav.Link href="/dinner">Dinner</Nav.Link>
                     </Nav>
                     <Form className="d-flex">
                         <FormControl 
