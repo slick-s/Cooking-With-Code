@@ -27,7 +27,8 @@ function RecipeCardCategory() {
     
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>Home</h1>
+      <div className='home-categories'>
       {recipes_.map((recipe => {
         return (
           <Card key={recipe.idCategory} style={{ width: '18rem' }}>
@@ -40,6 +41,7 @@ function RecipeCardCategory() {
           </Card>
         )
       }))}
+      </div>
     </div>
 
   );
