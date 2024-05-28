@@ -116,3 +116,75 @@ footer {
     background-color: #923915ad;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
+
+ody {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+}
+
+header {
+    background-color: #ff9800;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+main {
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#cuisine-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.cuisine {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s;
+    width: 200px;
+    margin: 1em;
+}
+
+.cuisine:hover {
+    transform: scale(1.05);
+}
+
+.cuisine img {
+    width: 100%;
+    height: auto;
+}
+
+.cuisine h3 {
+    margin: 0.5em 0;
+    font-size: 1.1em;
+}
+
+.cuisine button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff9800;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.cuisine button:hover {
+    background-color: #e68900;
+}
