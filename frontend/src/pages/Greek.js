@@ -3,7 +3,7 @@ import RecipeCard from "../components/RecipeCard"
 export default function Greek() {
     return (
         <div>
-            <p>Greek</p>
+           <h1>Greek Recipes</h1>
             <RecipeCard country={'Greek'} />
         </div>
        

@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Components
 import NavBar from './components/NavBar';
+import RecipeCardCategory from './components/RecipeCardCategory';
 import Background from './components/background';
 
 // Pages
@@ -18,20 +19,8 @@ import Greek from './pages/Greek'
 import Mexican from './pages/Mexican'
 import Error404 from './pages/Error404'
 
-// Variables
-const key = process.env.REACT_APP_API_KEY
-
-
 function App() {
-  const [recipes_, setRecipes] = useState([]); // Initialize state with an empty string
 
-  useEffect(() => {
-    axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
-      .then((res) => {
-      setRecipes(res.data.meals)
-    })
-  }, [])
-  
 
   return (
     <div className="App">
@@ -43,22 +32,9 @@ function App() {
           <Route path='/mexican' element={<Mexican />} />
           <Route path='/greek' element={<Greek />} />
           <Route path='/chinese' element={<Chinese />} />
-          <Route path='/404' element={<Error404 />} />
+          <Route path='/*' element={<Error404 />} />
         </Routes>
       </BrowserRouter>
-      {/* <NavBar /> */}
-      {/* <Background /> */}
-      <div className="message-container"> {/* Add a descriptive class name */}
-        <h1>Recipes</h1>
-        {recipes_.map((recipe => {
-          return (
-            <div key={recipe.idMeal}>
-              <p>{recipe.strMeal}</p>
-            </div>
-          )
-        }))}
-       
-      </div>
     </div>
   );
 }

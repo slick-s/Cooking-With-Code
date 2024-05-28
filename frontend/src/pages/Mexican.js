@@ -3,7 +3,7 @@ import RecipeCard from "../components/RecipeCard"
 export default function Mexican() {
     return (
         <div>
-            <p>Mexican</p>
+            <h1>Mexican Recipes</h1>
             <RecipeCard country={'Mexican'} />
         </div>
        
