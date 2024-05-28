@@ -1,10 +1,12 @@
+/* Footer Styles */
 footer {
-    background-color: #923915ad;
+    background-color: #444444;
     color: #f7f5df;
-    padding: 20px 0;
+    padding: 40px 0;
     position: relative;
     bottom: 0;
     width: 100%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .footer-content {
@@ -14,98 +16,78 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    flex-wrap: wrap;
 }
 
 .footer-section {
     flex: 1;
-    margin: 0 10px;
+    margin: 20px;
 }
 
 .footer-section h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
 }
 
 .footer-section p,
-.footer-section a {
-    color: #fff;
+.footer-section a,
+.footer-section li {
+    color: #f7f5df;
     text-decoration: none;
     margin-bottom: 10px;
     display: block;
+    transition: color 0.3s ease;
 }
 
 .footer-section a:hover {
     color: #ddd;
 }
 
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
 .footer-bottom {
     text-align: center;
-    padding: 10px;
-    background-color: #a86c44ee;
+    padding: 20px;
+    background-color: #333333;
     color: #dec5c5;
-    border: 1px solid #444;
+    border-top: 1px solid #555;
+    margin-top: 40px;
 }
 
-.slogan-container {
-    overflow: hidden;
-    white-space: nowrap;
-    box-sizing: border-box;
+.footer-section.slogan {
+    text-align: center;
+    flex-basis: 100%;
+
 }
 
-.slogan {
-    display: inline-block;
-    padding-left: 100%;
-    animation: moveSlogan 15s linear infinite;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.7em;
-    font-weight: 700;
-}
-
-@keyframes moveSlogan {
-    0% {
-        transform: translateX(0%);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-.footer-content {
+.footer-section .newsletter form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 }
 
-.footer-section.social {
-    order: 1;
-    width: 100%;
+.footer-section .newsletter input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 300px;
 }
 
-.footer-section:not(.social) {
-    order: 2;
-}
-
-.interactive-bubble-wrapper {
-    position: relative;
-    display: inline-block;
-    margin: 10px;
-}
-
-.interactive-bubble {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 50px;
-    left: 100px;
-    transform: translateX(-40%);
-    transition: all 0.3s ease;
-}
-
-.interactive-bubble-wrapper:hover .interactive-bubble {
+.footer-section .newsletter button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
     background-color: #923915ad;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer-section .newsletter button:hover {
+    background-color: #a86c44ee;
 }
