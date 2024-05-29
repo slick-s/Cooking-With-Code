@@ -16,7 +16,7 @@ const NavBar = () => {
                         <Nav.Link href="/chinese">Chinese</Nav.Link>
                         <Nav.Link href="/mexican">Mexican</Nav.Link>
                         <NavDropdown title='More' id='nav-dropdown-more'>
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                            <NavDropdown.Item href="/egyptian">Egyptian</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
                                 Another action
                             </NavDropdown.Item>

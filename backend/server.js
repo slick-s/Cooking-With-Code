@@ -14,24 +14,7 @@ app.use(express.json())
 // QUERY METHODS
 
 
-// Controllers and Routes
-app.get("/api", async (req, res) => {
-    try {
-        const response = await fetch('www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
-    
-        if (!response.ok){
-            throw new Error('Failute connecting to API');
-        }
-    
-        const data = await response.json();
-        res.json(data);
-      } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-      }
-});
-
-/* FAVORITES TABLE ROUTES */
+/* Controllers and Routes */
 
 // CREATE - POST A NEW FAVORITE RECIPE
 app.post('/recipe', async (req, res) => {
@@ -48,19 +31,6 @@ app.post('/recipe', async (req, res) => {
     }
 });
 
-app.post('/recipe', async (req, res) => {
-    try {
-
-        const { title} = req.body
-        const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1,$2) RETURNING *', [title]);
-        console.log(newRecipe);
-        res.json(newRecipe.rows[0]);
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Server Error');
-    }
-});
 // READ - GET
 app.get('/favorites', async (req, res) => {
     try {
