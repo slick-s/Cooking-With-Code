@@ -5,6 +5,8 @@ import axios, * as others from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 
+import "../App.css";
+
 
 function RecipeCard({ country }) {
 
@@ -16,10 +18,10 @@ function RecipeCard({ country }) {
       try {
         const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`);
         const initStartingRecipes = response.data.meals // Array of Meal Objects
-        for (let index = 0; index < initStartingRecipes.length; index++) {
+        /*for (let index = 0; index < initStartingRecipes.length; index++) {
           const desc = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${initStartingRecipes[index].idMeal}`)
           initStartingRecipes[index].desc = desc.data.meals[0].strInstructions
-        }
+        } */
         setRecipes(response.data.meals);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -30,14 +32,14 @@ function RecipeCard({ country }) {
   }, []);
 
   return (
-    <div>
+    <div className='card-container'>
       {recipes_.map((recipe => {
         return (
-          <Card key={recipe.idMeal} style={{ width: '18rem' }}>
+          <Card key={recipe.idMeal} className="custome-card-border" style={{ width: '18rem' }}>
             <Card.Img src={recipe.strMealThumb} variant="top" />
             <Card.Body>
               <Card.Title>{recipe.strMeal}</Card.Title>
-              <Card.Text>{recipe.desc}</Card.Text>
+              <Card.Text></Card.Text>
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>
           </Card>
