@@ -4,6 +4,8 @@ import axios, * as others from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 
+import '../App.css';
+
 
 function FullRecipeCard({ food }) {
   const [recipe, setRecipe] = useState(null);
@@ -27,9 +29,9 @@ function FullRecipeCard({ food }) {
 
   return (
     <Card>
-      <Card.Img src={recipe.strMealThumb} variant="top" />
+      <Card.Img src={recipe.strMealThumb} variant="top" style={{maxWidth:'400px',maxHeight:'400px'}}/>
       <Card.Body>
-        <Card.Title>{recipe.strMeal}</Card.Title>
+        <Card.Header>{recipe.strMeal}</Card.Header>
         <Card.Text>
           <strong>Category:</strong> {recipe.strCategory}<br />
           <strong>Cuisine:</strong> {recipe.strArea}<br />
