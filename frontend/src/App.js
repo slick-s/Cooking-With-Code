@@ -16,6 +16,7 @@ import Greek from './pages/Greek'
 import Mexican from './pages/Mexican'
 import Egyptian from './pages/Egyptian';
 import Error404 from './pages/Error404'
+import FullRecipe from './pages/FullRecipe';
 
 
 function App() {
@@ -32,7 +33,9 @@ function App() {
           <Route path='/greek' element={<Greek />} />
           <Route path='/chinese' element={<Chinese />} />
           <Route path='/egyptian' element={<Egyptian />} />
+          <Route path='/fullrecipe' element={<FullRecipe />} />
           <Route path='/*' element={<Error404 />} />
+          
         </Routes>
       </BrowserRouter>
     </div>
