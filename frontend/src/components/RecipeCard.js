@@ -2,25 +2,14 @@
 import axios, * as others from 'axios';
 
 // React Modules
-import React, { useEffect, useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { React, useEffect, useState } from 'react';
+import { Card, Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-
 function RecipeCard({ country }) {
-  const [recipes, setRecipes] = useState([]);
+  const [recipes_, setRecipes] = useState([])
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`);
-        setRecipes(response.data.meals);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
 
   const fetchRecipes = async () => {
     try {
@@ -75,6 +64,7 @@ function RecipeCard({ country }) {
         )
       }))}
     </div>
+
   );
 }
 
