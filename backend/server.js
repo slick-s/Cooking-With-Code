@@ -7,8 +7,12 @@ const pool = require('./db')
 const port = process.env.PORT
 const methodOverride = require('method-override')
 
+var corsOptions = {
+    origin: "http://localhost:3000"
+  };
+
 // Middleware
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json())
 
 // QUERY METHODS
@@ -17,11 +21,11 @@ app.use(express.json())
 /* Controllers and Routes */
 
 // CREATE - POST A NEW FAVORITE RECIPE
-app.post('/recipe', async (req, res) => {
+app.post('/favorites', async (req, res) => {
     try {
 
-        const { title, body} = req.body
-        const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1) ($2) RETURNING *', [title,body]);
+        const {favorites} = req.body
+        const newRecipe = await pool.query('INSERT INTO favorite_recipes (favorites) VALUES ($1) RETURNING *', [favorites]);
         console.log(newRecipe);
         res.json(newRecipe.rows[0]);
 

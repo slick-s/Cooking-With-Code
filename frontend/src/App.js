@@ -15,6 +15,7 @@ import Chinese from './pages/Chinese'
 import Greek from './pages/Greek'
 import Mexican from './pages/Mexican'
 import Egyptian from './pages/Egyptian';
+import Favorites from './pages/Favorites';
 import Error404 from './pages/Error404'
 
 
@@ -27,6 +28,7 @@ function App() {
       <NavBar/>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/favorites' element={<Favorites/>}/>
           <Route path='/american' element={<American />} />
           <Route path='/mexican' element={<Mexican />} />
           <Route path='/greek' element={<Greek />} />

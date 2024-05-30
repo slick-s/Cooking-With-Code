@@ -11,6 +11,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
+                    <Nav.Link href="/favorites">Favorites</Nav.Link>
                         <Nav.Link href="/american">American</Nav.Link>
                         <Nav.Link href="/greek">Greek</Nav.Link>
                         <Nav.Link href="/chinese">Chinese</Nav.Link>
