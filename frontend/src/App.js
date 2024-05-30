@@ -33,7 +33,7 @@ function App() {
           <Route path='/greek' element={<Greek />} />
           <Route path='/chinese' element={<Chinese />} />
           <Route path='/egyptian' element={<Egyptian />} />
-          <Route path='/fullrecipe' element={<FullRecipe />} />
+          <Route path='/fullrecipe/:id' element={<FullRecipe />} />
           <Route path='/*' element={<Error404 />} />
           
         </Routes>
