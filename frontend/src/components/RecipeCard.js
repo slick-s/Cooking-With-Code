@@ -22,22 +22,58 @@ function RecipeCard({ country }) {
       }
     };
 
+  const fetchRecipes = async () => {
+    try {
+      const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`);
+      const initStartingRecipes = response.data.meals // Array of Meal Objects
+      /*         for (let index = 0; index < initStartingRecipes.length; index++) {
+                const desc = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${initStartingRecipes[index].idMeal}`)
+                initStartingRecipes[index].desc = desc.data.meals[0].strInstructions
+              } */
+      setRecipes(response.data.meals);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const addFavorite = async (recipe) => {
+    const recipeData = {
+      favorites: recipe
+    }
+    try {
+      const response = await axios.post('http://localhost:5000/favorites', recipeData)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
     fetchRecipes();
   }, [country]);
 
   return (
     <div>
-      {recipes.map((recipe) => (
-        <Card key={recipe.idMeal} style={{ width: '18rem' }}>
-          <Card.Img src={recipe.strMealThumb} variant="top" />
-          <Card.Body>
-            <Card.Title>{recipe.strMeal}</Card.Title>
-            <Button onClick={() => navigate(`/fullRecipe/${recipe.idMeal}`)} variant="primary">
+      {recipes_.map((recipe => {
+        return (
+          <Form onSubmit={e => {
+            e.preventDefault()
+            addFavorite(recipe.idMeal)
+          }}>
+            <Card key={recipe.idMeal} style={{ width: '18rem' }}>
+              <Card.Img src={recipe.strMealThumb} variant="top" />
+              <Card.Body>
+                <Card.Title>{recipe.strMeal}</Card.Title>
+                <Card.Text></Card.Text>
+             <Button onClick={() => navigate(`/fullRecipe/${recipe.idMeal}`)} variant="primary">
               View Recipe
             </Button>
-          </Card.Body>
-        </Card>
-      ))}
+                <br />
+                <br />
+                <Button variant='secondary' type='submit'>Add to Favorites</Button>
+              </Card.Body>
+            </Card>
+          </Form>
+        )
+      }))}
     </div>
   );
 }

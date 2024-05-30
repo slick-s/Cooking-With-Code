@@ -5,26 +5,24 @@ const app = express()
 const cors = require('cors')
 const pool = require('./db')
 const port = process.env.PORT
-const methodOverride = require('method-override')
+
+var corsOptions = {
+    origin: "http://localhost:3000"
+  };
 
 // Middleware
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json())
-
-// QUERY METHODS
-
 
 /* Controllers and Routes */
 
-// CREATE - POST A NEW FAVORITE RECIPE
-app.post('/recipe', async (req, res) => {
+// CREATE/UPDATE - POST A NEW FAVORITE RECIPE
+app.post('/favorites', async (req, res) => {
     try {
-
-        const { title, body} = req.body
-        const newRecipe = await pool.query('INSERT INTO favorite_recipes (title, body) VALUES ($1) ($2) RETURNING *', [title,body]);
+        const {favorites} = req.body
+        const newRecipe = await pool.query('INSERT INTO favorite_recipes (favorites) VALUES ($1) RETURNING *', [favorites]);
         console.log(newRecipe);
-        res.json(newRecipe.rows[0]);
-
+        res.json(newRecipe.rows[0])
     } catch (err) {
         console.log(err);
         res.status(500).send('Server Error');
@@ -34,10 +32,8 @@ app.post('/recipe', async (req, res) => {
 // READ - GET
 app.get('/favorites', async (req, res) => {
     try {
-
         const favs = await pool.query('SELECT * FROM favorite_recipes')
         res.json(favs.rows)
-
     } catch (err) {
         console.log(err);
     }
@@ -45,27 +41,13 @@ app.get('/favorites', async (req, res) => {
 
 app.get('/favorites/:id', async (req, res) => {
     try {
-
         const { id } = req.params
         const specificFav = await pool.query('SELECT * FROM favorite_recipes WHERE fav_id = ($1)', [id])
         res.json(specificFav.rows[0])
-
     } catch (err) {
         console.log(err);
     }
 })
-
-// UPDATE - PUT/PATCH
-// app.put('/favorites/:id', async (req, res) => {
-//     try {
-
-        
-
-
-//     } catch (err) {
-//         console.log(err);
-//     }
-// })
 
 // DELETE - DELETE
 app.delete('/favorites/:id', async (req, res) => {

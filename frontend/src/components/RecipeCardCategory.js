@@ -3,31 +3,28 @@ import axios, * as others from 'axios';
 
 // React Modules
 import React, { useEffect, useState } from 'react';
-import { ReactDOM } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 
 
 function RecipeCardCategory() {
-
   const [recipes_, setRecipes] = useState([])
   const navigate = useNavigate();
   
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
-        setRecipes(response.data.categories);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  const fetchRecipes = async () => {
+    try {
+      const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
+      setRecipes(response.data.categories);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchRecipes();
   }, []);
-    
+
   return (
     <div>
       <h1>Home</h1>
