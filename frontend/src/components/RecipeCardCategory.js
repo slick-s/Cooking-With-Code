@@ -6,11 +6,14 @@ import React, { useEffect, useState } from 'react';
 import { ReactDOM } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 
 function RecipeCardCategory() {
 
   const [recipes_, setRecipes] = useState([])
+  const navigate = useNavigate();
   
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -36,7 +39,7 @@ function RecipeCardCategory() {
             <Card.Body>
               <Card.Title>{recipe.strCategory}</Card.Title>
               <Card.Text>{recipe.strCategoryDescription}</Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button onClick={() => navigate(`/category/${recipe.strCategory}`)} variant="primary">Click to see the list!</Button>
             </Card.Body>
           </Card>
         )
