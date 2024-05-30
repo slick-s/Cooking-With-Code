@@ -51,7 +51,8 @@ function RecipeCard({ country }) {
               <Card.Body>
                 <Card.Title>{recipe.strMeal}</Card.Title>
                 <Card.Text></Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">More</Button>
+                <br />
                 <br />
                 <Button variant='secondary' type='submit'>Add to Favorites</Button>
               </Card.Body>

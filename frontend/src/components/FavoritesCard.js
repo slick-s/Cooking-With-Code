@@ -13,16 +13,28 @@ export default function FavoritesCard() {
     const getFavorites = async () => {
         try {
             const response = await axios.get('http://localhost:5000/favorites');
-            console.log(response);
             setFavorites(response.data);
         } catch (error) {
             console.error(error);
         }
     };
 
+    const deleteFavorites = async (recipeIdMeal, fav_id) => {
+        try {
+            for (let i = 0; i < favorites.length; i++) {
+                const element = favorites[i]
+                if (element.favorites == recipeIdMeal) {
+                    const response = await axios.delete(`http://localhost:5000/favorites/${element.fav_id}`)
+                }
+                console.log(element);
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
     useEffect(() => {
         getFavorites();
-    }, []); 
+    }, []);
 
     useEffect(() => {
         if (favorites.length > 0) {
@@ -40,11 +52,9 @@ export default function FavoritesCard() {
                     console.error(error);
                 }
             };
-
             getRecipeID();
         }
-    }, [favorites]); 
-
+    }, [favorites]);
 
     return (
         <div>
@@ -56,9 +66,12 @@ export default function FavoritesCard() {
                             <Card.Body>
                                 <Card.Title>{recipe.strMeal}</Card.Title>
                                 <Card.Text></Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
+                                <Button variant="primary">More</Button>
                                 <br />
-                                <Button variant='secondary' type='submit'>Add to Favorites</Button>
+                                <br />
+                                <Button variant='danger' type='submit' onClick={() => {
+                                    deleteFavorites(recipe.idMeal, favorites.fav_id)
+                                }}>Delete</Button>
                             </Card.Body>
                         </Card>
                     </Form>

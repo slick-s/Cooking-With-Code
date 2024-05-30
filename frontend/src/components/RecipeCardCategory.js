@@ -3,8 +3,6 @@ import axios, * as others from 'axios';
 
 // React Modules
 import React, { useEffect, useState } from 'react';
-import { ReactDOM } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap';
 
 
@@ -34,7 +32,7 @@ function RecipeCardCategory() {
               <Card.Body>
                 <Card.Title>{recipe.strCategory}</Card.Title>
                 <Card.Text>{recipe.strCategoryDescription}</Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">More</Button>
               </Card.Body>
             </Card>
           )
