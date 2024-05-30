@@ -4,11 +4,12 @@ import axios, * as others from 'axios';
 // React Modules
 import { React, useEffect, useState } from 'react';
 import { Card, Button, Form } from 'react-bootstrap';
-
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function FavoritesCard() {
     const [favorites, setFavorites] = useState([]);
     const [recipes, setRecipes] = useState([]);
+    const navigate = useNavigate();
 
     const getFavorites = async () => {
         try {
@@ -66,7 +67,9 @@ export default function FavoritesCard() {
                             <Card.Body>
                                 <Card.Title>{recipe.strMeal}</Card.Title>
                                 <Card.Text></Card.Text>
-                                <Button variant="primary">More</Button>
+                                <Button onClick={() => navigate(`/fullRecipe/${recipe.idMeal}`)} variant="primary">
+                                    View Recipe
+                                </Button>
                                 <br />
                                 <br />
                                 <Button variant='danger' type='submit' onClick={() => {
