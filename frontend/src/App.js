@@ -17,6 +17,7 @@ import Mexican from './pages/Mexican'
 import Egyptian from './pages/Egyptian';
 import Error404 from './pages/Error404'
 import FullRecipe from './pages/FullRecipe';
+import Category from './pages/Category';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='/chinese' element={<Chinese />} />
           <Route path='/egyptian' element={<Egyptian />} />
           <Route path='/fullrecipe/:id' element={<FullRecipe />} />
+          <Route path='/category/:id' element={<Category />} />
           <Route path='/*' element={<Error404 />} />
           
         </Routes>
