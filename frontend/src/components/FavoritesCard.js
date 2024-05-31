@@ -3,12 +3,13 @@ import axios, * as others from 'axios';
 
 // React Modules
 import { React, useEffect, useState } from 'react';
-import { Card, Button, Form } from 'react-bootstrap';
+import { Card, Button, Form, Col, Row, Toast } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function FavoritesCard() {
     const [favorites, setFavorites] = useState([]);
     const [recipes, setRecipes] = useState([]);
+    const [show, setShow] = useState(false)
     const navigate = useNavigate();
 
     const getFavorites = async () => {
