@@ -4,7 +4,7 @@ import '../App.css';
 
 const Background = () => {
   return (
-    <Container fluid className="custom-background text-white p-5">
+    <Container fluid className="custom-background">
       <Row>
         <Col>
           <h1 className='custom-h1'>What are we eating today? </h1>

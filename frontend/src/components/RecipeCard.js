@@ -6,12 +6,30 @@ import { React, useEffect, useState } from 'react';
 import { Card, Button, Form, Col, Row, Toast, ToastContainer } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
+import "../App.css";
+
 
 function RecipeCard({ country }) {
   const [recipes_, setRecipes] = useState([])
   const [show, setShow] = useState(false)
   const [position, setPosition] = useState('top-center');
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`);
+        const initStartingRecipes = response.data.meals // Array of Meal Objects
+        /*for (let index = 0; index < initStartingRecipes.length; index++) {
+          const desc = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${initStartingRecipes[index].idMeal}`)
+          initStartingRecipes[index].desc = desc.data.meals[0].strInstructions
+        } */
+        setRecipes(response.data.meals);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
   const fetchRecipes = async () => {
     try {
@@ -37,14 +55,25 @@ function RecipeCard({ country }) {
     }
   }
 
+
   useEffect(() => {
     fetchRecipes();
   }, [country]);
 
   return (
-    <div>
+    <div className='card-container'>
       {recipes_.map((recipe => {
         return (
+
+          <Card key={recipe.idMeal} className="custome-card-border" style={{ width: '18rem' }}>
+            <Card.Img src={recipe.strMealThumb} variant="top" />
+            <Card.Body>
+              <Card.Title>{recipe.strMeal}</Card.Title>
+              <Card.Text></Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+
           <Form onSubmit={e => {
             e.preventDefault()
             addFavorite(recipe.idMeal)
@@ -65,6 +94,7 @@ function RecipeCard({ country }) {
               </Card.Body>
             </Card>
           </Form>
+
         )
       }))}
     </div>

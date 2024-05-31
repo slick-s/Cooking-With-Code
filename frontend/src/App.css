@@ -46,7 +46,7 @@
 }
 .custom-background{
   height: 100vh;
-  background-color: #fff9f0
+  background-color: #eb920d
 }
 .custom-h1{
   color: #212b2e;
@@ -71,9 +71,9 @@
 }
 
 .NavBarCustom .btn-primary {
-  background-color: white !important;
+  background-color: rgb(141, 15, 15) !important;
   color: #3498db !important;
-  border-color: white !important;
+  border-color: rgb(184, 23, 23) !important;
 }
 
 .NavBarCustom .form-control {
@@ -81,4 +81,33 @@
 }
 .custom-h3{
   color: aquamarine;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  background-color: #00110c;
+
+
+}
+.home-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 150px;
+  background-color: #eb920d;
+}
+.custom-card-border {
+  border: 2px solid purple;
+  border-radius: 10px;
+}
+.btn-primary{
+  border-radius: 100px;
+
+}
+.H-1{
+  background-color: yellow;
+  margin: 0;
 }
