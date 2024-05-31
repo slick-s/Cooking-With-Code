@@ -3,12 +3,14 @@ import axios, * as others from 'axios';
 
 // React Modules
 import { React, useEffect, useState } from 'react';
-import { Card, Button, Form } from 'react-bootstrap';
+import { Card, Button, Form, Col, Row, Toast, ToastContainer } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 
 function RecipeCard({ country }) {
   const [recipes_, setRecipes] = useState([])
+  const [show, setShow] = useState(false)
+  const [position, setPosition] = useState('top-center');
   const navigate = useNavigate();
 
   const fetchRecipes = async () => {
@@ -52,12 +54,14 @@ function RecipeCard({ country }) {
               <Card.Body>
                 <Card.Title>{recipe.strMeal}</Card.Title>
                 <Card.Text></Card.Text>
-             <Button onClick={() => navigate(`/fullRecipe/${recipe.idMeal}`)} variant="primary">
-              View Recipe
-            </Button>
+                <Button onClick={() => navigate(`/fullRecipe/${recipe.idMeal}`)} variant="primary">
+                  View Recipe
+                </Button>
                 <br />
                 <br />
-                <Button variant='secondary' type='submit'>Add to Favorites</Button>
+                <Button variant='secondary' type='submit' onClick={() => {
+                  setShow(true)
+                }}>Add to Favorites</Button>
               </Card.Body>
             </Card>
           </Form>
