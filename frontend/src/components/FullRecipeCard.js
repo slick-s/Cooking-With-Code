@@ -3,9 +3,7 @@ import axios, * as others from 'axios';
 // React Modules
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
-
 import '../App.css';
-
 
 function FullRecipeCard({ food }) {
   const [recipe, setRecipe] = useState(null);

@@ -4,6 +4,7 @@ import axios, * as others from 'axios';
 // React Modules
 import { React, useEffect, useState } from 'react';
 import { Card, Button, Form, Col, Row, Toast } from 'react-bootstrap';
+import toast, { Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function FavoritesCard() {
@@ -28,10 +29,12 @@ export default function FavoritesCard() {
                 if (element.favorites == recipeIdMeal) {
                     const response = await axios.delete(`http://localhost:5000/favorites/${element.fav_id}`)
                 }
-                console.log(element);
             }
         } catch (error) {
             console.error(error)
+            toast.error('Unable to delete', {
+                duration: 3000,
+            })
         }
     }
     useEffect(() => {
@@ -43,6 +46,8 @@ export default function FavoritesCard() {
             const getRecipeID = async () => {
                 try {
                     const recipesData = [];
+                    if (recipesData.length != favorites.length) {
+                    }
                     for (let index = 0; index < favorites.length; index++) {
                         const v = favorites[index].favorites;
                         console.log(v);
@@ -54,7 +59,7 @@ export default function FavoritesCard() {
                     console.error(error);
                 }
             };
-            getRecipeID();
+            getRecipeID()
         }
     }, [favorites]);
 
@@ -78,6 +83,7 @@ export default function FavoritesCard() {
                                 }}>Delete</Button>
                             </Card.Body>
                         </Card>
+                        <Toaster position='top-center' />
                     </Form>
                 )
             }))}
