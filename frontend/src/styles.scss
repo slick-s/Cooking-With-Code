@@ -1,0 +1,136 @@
+// Variables
+$primary-bg-color: #282c34;
+$primary-font-color: rgb(243, 87, 14);
+$link-color: #212b2e;
+$spin-duration: 20s;
+$navbar-bg-color: #3498db;
+$navbar-link-color: #00110c;
+$navbar-brand-color: #ff7733;
+$btn-primary-bg-color: rgb(141, 15, 15);
+$btn-primary-color: #3498db;
+$btn-primary-border-color: rgb(184, 23, 23);
+$form-control-border-color: rgb(155, 17, 17);
+$custom-h3-color: aquamarine;
+$card-bg-color: #00110c;
+$home-categories-bg-color: #eb920d;
+$custom-card-border-color: purple;
+$h1-bg-color: yellow;
+$bg-image-url: url(CookingWithCode.jpeg);
+$bg-image-height: 100vh;
+$bg-image-color: rgb(153, 25, 25);
+
+// Styles
+.App {
+  text-align: center;
+
+  &-logo {
+    height: 40vmin;
+    pointer-events: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: App-logo-spin infinite $spin-duration linear;
+    }
+  }
+
+  &-header {
+    background-color: $primary-bg-color;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: $primary-font-color;
+  }
+
+  &-link {
+    color: $link-color;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bg-image {
+  background-image: $bg-image-url;
+  background-size: cover;
+  background-position: center;
+  height: $bg-image-height;
+  color: $bg-image-color;
+}
+
+.custom-background {
+  height: 100vh;
+  background-color: #eb920d;
+}
+
+.custom-h1 {
+  color: $link-color;
+}
+
+.NavBarCustom {
+  background-color: $navbar-bg-color !important;
+
+  .nav-link {
+    color: $navbar-link-color !important;
+  }
+
+  .navbar-brand {
+    color: $navbar-brand-color !important;
+  }
+
+  .btn-outline-primary {
+    color: white !important;
+    border-color: white !important;
+  }
+
+  .btn-primary {
+    background-color: $btn-primary-bg-color !important;
+    color: $btn-primary-color !important;
+    border-color: $btn-primary-border-color !important;
+  }
+
+  .form-control {
+    border-color: $form-control-border-color !important;
+  }
+}
+
+.custom-h3 {
+  color: $custom-h3-color;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  background-color: $card-bg-color;
+}
+
+.home-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 150px;
+  background-color: $home-categories-bg-color;
+}
+
+.custom-card-border {
+  border: 2px solid $custom-card-border-color;
+  border-radius: 10px;
+}
+
+.btn-primary {
+  border-radius: 100px;
+}
+
+.H-1 {
+  background-color: $h1-bg-color;
+  margin: 0;
+}

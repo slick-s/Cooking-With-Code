@@ -4,8 +4,8 @@ import axios, * as others from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-import '../App.css';
-
+//import '../App.css';
+import '../styles.css';
 
 function FullRecipeCard({ food }) {
   const [recipe, setRecipe] = useState(null);

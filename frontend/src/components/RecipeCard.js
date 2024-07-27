@@ -6,41 +6,32 @@ import { React, useEffect, useState } from 'react';
 import { Card, Button, Form, Col, Row, Toast, ToastContainer } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
-import "../App.css";
-
+//import "../App.css";
+import '../styles.css';
 
 function RecipeCard({ country }) {
-  const [recipes_, setRecipes] = useState([])
-  const [show, setShow] = useState(false)
-  const [position, setPosition] = useState('top-center');
+  const [recipes_, setRecipes] = useState([]);
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
-
-
 
   const fetchRecipes = async () => {
     try {
       const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`);
-      const initStartingRecipes = response.data.meals // Array of Meal Objects
-      /*         for (let index = 0; index < initStartingRecipes.length; index++) {
-                const desc = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${initStartingRecipes[index].idMeal}`)
-                initStartingRecipes[index].desc = desc.data.meals[0].strInstructions
-              } */
       setRecipes(response.data.meals);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
-  const addFavorite = async (recipe) => {
-    const recipeData = {
-      favorites: recipe
-    }
-    try {
-      const response = await axios.post('http://localhost:5000/favorites', recipeData)
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
+  const addFavorite = async (recipe) => {
+    const recipeData = { favorites: recipe };
+    try {
+      const response = await axios.post('http://localhost:5000/favorites', recipeData);
+      console.log('POST response:', response.data);
+    } catch (error) {
+      console.error('Error posting favorite:', error);
+    }
+  };
 
   useEffect(() => {
     fetchRecipes();
@@ -48,34 +39,38 @@ function RecipeCard({ country }) {
 
   return (
     <div className='card-container'>
-      {recipes_.map((recipe => {
-        return (
-
-          <Form onSubmit={e => {
-            e.preventDefault()
-            addFavorite(recipe.idMeal)
-          }}>
-            <Card key={recipe.idMeal} style={{ width: '18rem' }}>
-              <Card.Img src={recipe.strMealThumb} variant="top" />
-              <Card.Body>
-                <Card.Title>{recipe.strMeal}</Card.Title>
-                <Card.Text></Card.Text>
-                <Button onClick={() => navigate(`/fullRecipe/${recipe.idMeal}`)} variant="primary">
-                  View Recipe
-                </Button>
-                <br />
-                <br />
-                <Button variant='secondary' type='submit' onClick={() => {
-                  setShow(true)
-                }}>Add to Favorites</Button>
-              </Card.Body>
-            </Card>
-          </Form>
-
-        )
-      }))}
+      {recipes_.map((recipe) => (
+        <Form
+          key={recipe.idMeal} // Add the key prop here
+          onSubmit={(e) => {
+            e.preventDefault();
+            addFavorite(recipe.idMeal);
+          }}
+        >
+          <Card style={{ width: '18rem' }}>
+            <Card.Img src={recipe.strMealThumb} variant="top" />
+            <Card.Body>
+              <Card.Title>{recipe.strMeal}</Card.Title>
+              <Card.Text></Card.Text>
+              <Button onClick={() => navigate(`/fullRecipe/${recipe.idMeal}`)} variant="primary">
+                View Recipe
+              </Button>
+              <br />
+              <br />
+              <Button
+                variant='secondary'
+                type='submit'
+                onClick={() => {
+                  setShow(true);
+                }}
+              >
+                Add to Favorites
+              </Button>
+            </Card.Body>
+          </Card>
+        </Form>
+      ))}
     </div>
-
   );
 }
 
