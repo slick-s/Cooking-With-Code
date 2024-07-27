@@ -1,28 +1,29 @@
 // Modules and Globals
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const pool = require('./db')
-const port = process.env.PORT
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const pool = require('./db');
+const port = process.env.PORT || 5000;
 
-var corsOptions = {
-    origin: "http://localhost:3000"
-  };
+const corsOptions = {
+    origin: "http://localhost:3000",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true, // Allow cookies to be sent with the request
+    optionsSuccessStatus: 200,
+};
 
 // Middleware
-app.use(cors(corsOptions))
-app.use(express.json())
-
-/* Controllers and Routes */
+app.use(cors(corsOptions));
+app.use(express.json());
 
 // CREATE/UPDATE - POST A NEW FAVORITE RECIPE
 app.post('/favorites', async (req, res) => {
     try {
-        const {favorites} = req.body
+        const { favorites } = req.body;
         const newRecipe = await pool.query('INSERT INTO favorite_recipes (favorites) VALUES ($1) RETURNING *', [favorites]);
         console.log(newRecipe);
-        res.json(newRecipe.rows[0])
+        res.json(newRecipe.rows[0]);
     } catch (err) {
         console.log(err);
         res.status(500).send('Server Error');
@@ -32,37 +33,25 @@ app.post('/favorites', async (req, res) => {
 // READ - GET
 app.get('/favorites', async (req, res) => {
     try {
-        const favs = await pool.query('SELECT * FROM favorite_recipes')
-        res.json(favs.rows)
+        const favs = await pool.query('SELECT * FROM favorite_recipes');
+        res.json(favs.rows);
     } catch (err) {
         console.log(err);
     }
-})
-
-app.get('/favorites/:id', async (req, res) => {
-    try {
-        const { id } = req.params
-        const specificFav = await pool.query('SELECT * FROM favorite_recipes WHERE fav_id = ($1)', [id])
-        res.json(specificFav.rows[0])
-    } catch (err) {
-        console.log(err);
-    }
-})
+});
 
 // DELETE - DELETE
 app.delete('/favorites/:id', async (req, res) => {
     try {
-        const {id} = req.params
-        const deleteFavs = await pool.query('DELETE FROM favorite_recipes WHERE fav_id = ($1)', [id])
-        res.send('Deleted')
+        const { id } = req.params;
+        await pool.query('DELETE FROM favorite_recipes WHERE fav_id = ($1)', [id]);
+        res.send('Deleted');
     } catch (err) {
         console.log(err);
     }
-})
+});
 
-// // Backend Server Port
+// Backend Server Port
 app.listen(port, () => {
-    console.log('Server Started!')
-})
-
-
+    console.log(`Server started on port ${port}`);
+});

@@ -1,19 +1,15 @@
-
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,7 +20,6 @@
   font-size: calc(10px + 2vmin);
   color: rgb(243, 87, 14);
 }
-
 .App-link {
   color: #212b2e;
 }
@@ -44,42 +39,39 @@
   height: 100vh;
   color: rgb(153, 25, 25);
 }
-.custom-background{
+
+.custom-background {
   height: 100vh;
-  background-color: #eb920d
+  background-color: #eb920d;
 }
-.custom-h1{
+
+.custom-h1 {
   color: #212b2e;
 }
 
-
 .NavBarCustom {
-  background-color: #3498db !important; /* Your desired background color */
+  background-color: #3498db !important;
 }
-
 .NavBarCustom .nav-link {
-  color: #00110c !important; /* Your desired link color */
+  color: #00110c !important;
 }
-
 .NavBarCustom .navbar-brand {
-  color: #ff7733 !important; /* Your desired brand color */
+  color: #ff7733 !important;
 }
-
 .NavBarCustom .btn-outline-primary {
   color: white !important;
   border-color: white !important;
 }
-
 .NavBarCustom .btn-primary {
   background-color: rgb(141, 15, 15) !important;
   color: #3498db !important;
   border-color: rgb(184, 23, 23) !important;
 }
-
 .NavBarCustom .form-control {
   border-color: rgb(155, 17, 17) !important;
 }
-.custom-h3{
+
+.custom-h3 {
   color: aquamarine;
 }
 
@@ -89,9 +81,8 @@
   justify-content: center;
   gap: 50px;
   background-color: #00110c;
-
-
 }
+
 .home-categories {
   display: flex;
   flex-wrap: wrap;
@@ -99,15 +90,17 @@
   gap: 150px;
   background-color: #eb920d;
 }
+
 .custom-card-border {
   border: 2px solid purple;
   border-radius: 10px;
 }
-.btn-primary{
-  border-radius: 100px;
 
+.btn-primary {
+  border-radius: 100px;
 }
-.H-1{
+
+.H-1 {
   background-color: yellow;
   margin: 0;
-}
+}/*# sourceMappingURL=styles.css.map */

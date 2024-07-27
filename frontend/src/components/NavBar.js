@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Container, Button, Form, FormControl } from 'react-bootstrap';
-import '../App.css';
-
+//import '../App.css';
+import '../styles.css';
 
 const NavBar = () => {
     return (
